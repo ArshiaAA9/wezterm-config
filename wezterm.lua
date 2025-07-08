@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
+config.max_fps = 144
 
 config.font_size = 13
 config.font = wezterm.font_with_fallback {
@@ -78,6 +79,10 @@ config.keys = {
     key = '3',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
+  -- Copy to system clipboard and primary selection
+  { key = 'c', mods = 'CTRL|SHIFT', action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection' },
+  -- Paste from system clipboard
+  { key = 'v', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
 }
 
 return config
